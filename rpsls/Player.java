@@ -1,7 +1,67 @@
 package rpsls;
 
-public class Player {
-    // TODO: Human and Ai classes will inherit from here
+import java.util.Arrays;
+import java.util.Scanner;
 
-    // TODO: Create the base player
+public class Player {
+    String name;
+    String chosenGesture;
+    int winCount;
+    String[] gestures = {"Rock", "Paper", "Scissors", "Lizard", "Spock"};
+    Scanner userInput;
+    
+    public Player() {
+        userInput = new Scanner(System.in);
+        this.name = chooseName();
+    }
+    
+    protected String chooseName() {
+
+        while(true) {
+            try {
+                System.out.print("Choose your name: ");
+                String userName = userInput.next();
+                if(userName.length() > 12 || userName.length() < 2) {
+                    printToConsole("User's name must be greater than 2 characters and less than 12");
+                    continue;
+                }
+                else {
+                    printToConsole("Hello " + userName + "!");
+                    return userName;
+                }
+            } catch(Exception e) {
+                printToConsole("Error getting user's name: " + e.getLocalizedMessage());
+            }
+        }
+    }
+
+    protected void chooseGesture() {
+        String gestureChoice;
+        while(true) {
+            try {
+                String joinedGestures = String.join(" || ", this.gestures);
+                System.out.println(joinedGestures + "\nChoose a gesture!");
+                userInput.nextLine();
+                gestureChoice = userInput.nextLine();
+                if(Arrays.asList(this.gestures).contains(toTitleCase(gestureChoice))) {
+                    this.chosenGesture = gestureChoice;
+                    break;
+                }
+                else {
+                    continue;
+                }
+            } catch(Exception e) {
+                printToConsole("Error choosing gesture: " + e.getLocalizedMessage());
+                break;
+            }
+        }
+    }
+
+    public static String toTitleCase(String s) {
+        return (s.length() > 0) ? s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase() : "";
+    }
+
+    static void printToConsole(String text) {
+        System.out.println(text);
+    }
 }

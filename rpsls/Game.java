@@ -7,4 +7,8 @@ public class Game {
 
     // TODO: Battle, decide winner methods
 
+    public void runGame() {
+        Player newPlayer = new Player();
+        newPlayer.chooseGesture();
+    }
 }
