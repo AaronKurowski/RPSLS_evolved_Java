@@ -1,13 +1,7 @@
 package rpsls;
 
 public class Game {
-    static int numberOfRounds;
-
-    // TODO: Create constructor to initilize players upon instantiation
-
-    // TODO: Welcome method. Explain the rules
-
-    // TODO: Battle, decide winner methods
+    static int numberOfWinsToGameOver;
 
     public void runGame() {
 
@@ -51,9 +45,21 @@ public class Game {
 
     }
 
-    public int numberOfRounds(int rounds) {
-        return rounds;
+    public int userChosenRoundNumber() {
+        printLine("Choose a number and you'll play a best of that number");
+        String rounds = Human.userInput.nextLine();
+        return Integer.parseInt(rounds);
     }
 
-
+    public void numberOfRounds() {
+        int num = userChosenRoundNumber();
+        if(num % 2 == 0) {
+            int winningNumber = (num / 2) + 1;
+            Game.numberOfWinsToGameOver = winningNumber;
+        }
+        else if(num % 2 == 1) {
+            int winningNumber = (int)Math.ceil(num / 2);
+            Game.numberOfWinsToGameOver = winningNumber;
+        }
+    }
 }

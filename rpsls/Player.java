@@ -8,7 +8,7 @@ public abstract class Player {
     String chosenGesture;
     int winCount;
     static String[] gestures = {"Rock", "Paper", "Scissors", "Lizard", "Spock"};
-    Scanner userInput;
+    static Scanner userInput;
     
     public Player() {
         userInput = new Scanner(System.in);
