@@ -11,18 +11,15 @@ public class Game {
     Gesture gesture;
 
     public Game() {
-        // chooseContestants();
+        chooseContestants();
         gesture = new Gesture();
     }
 
     public void runGame() {
-       gesture.printWinConditions();
-       gesture.defineWinnerForComputerOpponent(player1, computer);
-
-        // openingStatement();
-        // numberOfRounds();
-        // System.out.println("Round best of: " + Game.numberOfWinsToGameOver);
-        // battle();
+        openingStatement();
+        numberOfRounds();
+        battle();
+        declareWinner();
     }
 
     public void chooseContestants() {
@@ -41,11 +38,11 @@ public class Game {
     }
 
     public void battle() {
-        printLine("Battle");
         if(player2 == null) {
             while(player1.winCount < numberOfWinsToGameOver && computer.winCount < numberOfWinsToGameOver) {
-                printLine("This is player 1 and ai battling");
-                break;
+                player1.chooseGesture();
+                computer.chooseGesture();
+                gesture.defineWinnerForComputerOpponent(player1, computer);
             }
         }
         else {
@@ -76,10 +73,6 @@ public class Game {
 
     }
 
-    public void decideWinner() {
-        System.out.println("Decide Winner");
-    }
-
     public int userChosenRoundNumber() {
         gameInput = new Scanner(System.in);
         printLine("\nChoose a number and you'll play a best of that number");
@@ -97,5 +90,25 @@ public class Game {
             int winningNumber = ((num + 1) / 2);
             Game.numberOfWinsToGameOver = winningNumber;
         }
+        System.out.println("First to " + Game.numberOfWinsToGameOver + " wins.");
+    }
+
+    public void declareWinner() {
+        if(player1.winCount > computer.winCount) {
+            printLine("Player 1 wins!");
+        }
+        else {
+            printLine("Computer wins!");
+        }
+    }
+
+    public void printGameData() {
+        printLine("Number of wins until game over: " + numberOfWinsToGameOver);
+
+        printLine("Player 1 win count: " + player1.winCount);
+        printLine("Computer win count: " + computer.winCount);
+        
+
     }
 }
+

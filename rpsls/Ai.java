@@ -8,8 +8,8 @@ public class Ai extends Player {
     }
 
     public void chooseGesture() {
-        int randomNummber = (int)(Math.random() * 6);
-        this.chosenGesture = Ai.gestures[randomNummber];
+        int randomNumber = (int)(Math.random() * 5);
+        this.chosenGesture = Ai.gestures[randomNumber].toLowerCase();
         System.out.println(this.chosenGesture);
     }
 

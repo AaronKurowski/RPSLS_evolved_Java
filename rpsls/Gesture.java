@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Gesture {
 
-    Map<String, List<String>> winConditions = new HashMap();
+    Map<String, List<String>> winConditions = new HashMap<>();
 
     public Gesture() {
         List<String> rockValues = new ArrayList<String>();
@@ -40,11 +40,24 @@ public class Gesture {
         System.out.println(winConditions);
     }
 
-    public void defineWinnerForComputerOpponent(Human player1, Ai Computer) {
+    public void defineWinnerForComputerOpponent(Human player1, Ai computer) {
         for(var entry : winConditions.entrySet()) {
-            
-
             // System.out.println(entry.getKey() + "/" + entry.getValue().get(0));
+        
+            if(player1.chosenGesture.equals(computer.chosenGesture)) {
+                System.out.println("Draw");
+                break;
+            }
+            else if(player1.chosenGesture.equals(entry.getKey()) && (entry.getValue().contains(computer.chosenGesture))) {
+                System.out.println("Player 1 wins this round");
+                player1.winCount++;
+                break;
+            }
+            else {
+                System.out.println("Computer wins this round!");
+                computer.winCount++;
+                break;
+            }
         }
     }
 }
