@@ -1,11 +1,7 @@
 package rpsls;
 
-import java.util.Random;
-
 public class Ai extends Player {
-    // TODO: inherit from player class, add randomness, overload certain methods
     Math math;
-
 
     public Ai() {
         this.name = "Computer";
@@ -16,6 +12,5 @@ public class Ai extends Player {
         this.chosenGesture = Ai.gestures[randomNummber];
         System.out.println(this.chosenGesture);
     }
-
 
 }
