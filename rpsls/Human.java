@@ -1,7 +1,8 @@
 package rpsls;
 
-public class Human {
-    // Human player, will inherit from Player.java
+public class Human extends Player {
 
-    // TODO: Allow name picking and..
+    public Human() {
+        this.name = chooseName();
+    }
 }

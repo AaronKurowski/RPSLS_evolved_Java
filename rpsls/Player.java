@@ -3,16 +3,15 @@ package rpsls;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Player {
+public abstract class Player {
     String name;
     String chosenGesture;
     int winCount;
-    String[] gestures = {"Rock", "Paper", "Scissors", "Lizard", "Spock"};
+    static String[] gestures = {"Rock", "Paper", "Scissors", "Lizard", "Spock"};
     Scanner userInput;
     
     public Player() {
         userInput = new Scanner(System.in);
-        this.name = chooseName();
     }
     
     protected String chooseName() {
@@ -37,23 +36,25 @@ public class Player {
 
     protected void chooseGesture() {
         String gestureChoice;
-        while(true) {
-            try {
-                String joinedGestures = String.join(" || ", this.gestures);
-                System.out.println(joinedGestures + "\nChoose a gesture!");
+        try {
+            String joinedGesture = String.join(" || ", Player.gestures);
+            while(true) {
+                System.out.print(joinedGesture + "\nChoose a gesture >>>");
                 userInput.nextLine();
-                gestureChoice = userInput.nextLine();
-                if(Arrays.asList(this.gestures).contains(toTitleCase(gestureChoice))) {
+                gestureChoice = userInput.next();
+                if(Arrays.asList(Player.gestures).contains(toTitleCase(gestureChoice))) {
                     this.chosenGesture = gestureChoice;
                     break;
-                }
-                else {
+                } 
+                else if(gestureChoice == null) {
+                    continue;
+                } else {
                     continue;
                 }
-            } catch(Exception e) {
-                printToConsole("Error choosing gesture: " + e.getLocalizedMessage());
-                break;
             }
+
+        } catch(Exception e) {
+            printToConsole("Error choosing gesture: " + e.getLocalizedMessage());
         }
     }
 
@@ -61,7 +62,7 @@ public class Player {
         return (s.length() > 0) ? s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase() : "";
     }
 
-    static void printToConsole(String text) {
+    public static void printToConsole(String text) {
         System.out.println(text);
     }
 }

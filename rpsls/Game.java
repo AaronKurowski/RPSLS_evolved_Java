@@ -8,7 +8,14 @@ public class Game {
     // TODO: Battle, decide winner methods
 
     public void runGame() {
-        Player newPlayer = new Player();
+
+        Human newPlayer = new Human();
         newPlayer.chooseGesture();
+
+        Ai computer = new Ai();
+        System.out.println("Name of Ai: " + computer.name);
+
+        computer.chooseGesture();
+
     }
 }
