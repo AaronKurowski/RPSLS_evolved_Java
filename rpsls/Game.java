@@ -70,12 +70,11 @@ public class Game {
         printLine("Lizard eats Paper");
         printLine("Paper disproves Spock");
         printLine("Spock vaporizes Rock");
-
     }
 
     public int userChosenRoundNumber() {
         gameInput = new Scanner(System.in);
-        printLine("\nChoose a number and you'll play a best of that number");
+        printLine("\nChoose a best of round number");
         String rounds = gameInput.nextLine();
         return Integer.parseInt(rounds);
     }
@@ -95,20 +94,17 @@ public class Game {
 
     public void declareWinner() {
         if(player1.winCount > computer.winCount) {
-            printLine("Player 1 wins!");
+            printLine("Player 1 wins the game!");
         }
         else {
-            printLine("Computer wins!");
+            printLine("Computer wins the game!");
         }
     }
 
     public void printGameData() {
-        printLine("Number of wins until game over: " + numberOfWinsToGameOver);
-
+        printLine("Number of wins to game over: " + numberOfWinsToGameOver);
         printLine("Player 1 win count: " + player1.winCount);
         printLine("Computer win count: " + computer.winCount);
-        
-
     }
 }
 

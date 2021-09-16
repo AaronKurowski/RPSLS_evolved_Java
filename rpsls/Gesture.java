@@ -41,9 +41,9 @@ public class Gesture {
     }
 
     public void defineWinnerForComputerOpponent(Human player1, Ai computer) {
-        for(var entry : winConditions.entrySet()) {
-            // System.out.println(entry.getKey() + "/" + entry.getValue().get(0));
         
+        for(var entry : winConditions.entrySet()) {
+
             if(player1.chosenGesture.equals(computer.chosenGesture)) {
                 System.out.println("Draw");
                 break;
@@ -53,10 +53,13 @@ public class Gesture {
                 player1.winCount++;
                 break;
             }
-            else {
+            else if(computer.chosenGesture.equals(entry.getKey()) && (entry.getValue().contains(player1.chosenGesture))) {
                 System.out.println("Computer wins this round!");
                 computer.winCount++;
                 break;
+            }
+            else {
+                continue;
             }
         }
     }

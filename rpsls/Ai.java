@@ -10,7 +10,5 @@ public class Ai extends Player {
     public void chooseGesture() {
         int randomNumber = (int)(Math.random() * 5);
         this.chosenGesture = Ai.gestures[randomNumber].toLowerCase();
-        System.out.println(this.chosenGesture);
     }
-
 }

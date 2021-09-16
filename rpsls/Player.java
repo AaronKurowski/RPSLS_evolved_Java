@@ -15,7 +15,6 @@ public abstract class Player {
     }
     
     protected String chooseName() {
-
         while(true) {
             try {
                 System.out.print("Choose your name: ");
