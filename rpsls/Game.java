@@ -5,25 +5,48 @@ import java.util.Scanner;
 public class Game {
     static int numberOfWinsToGameOver;
     Scanner gameInput;
+    Human player1;
+    Human player2;
+    Ai computer;
+
+    public Game() {
+        chooseContestants();
+        configurePlayers();
+    }
 
     public void runGame() {
-
-        // Human newPlayer = new Human();
-        // newPlayer.chooseGesture();
-
-        // Ai computer = new Ai();
-        // System.out.println("Name of Ai: " + computer.name);
-
-        // computer.chooseGesture();
-
         openingStatement();
         numberOfRounds();
-        System.out.println(Game.numberOfWinsToGameOver);
+        System.out.println("Round best of: " + Game.numberOfWinsToGameOver);
 
+        battle();
+    }
+
+    public void chooseContestants() {
+        gameInput = new Scanner(System.in);
+        printLine("\nType 1 to play against a computer ai");
+        printLine("Type 2 to play against another human");
+        String userChoice = gameInput.nextLine();
+        if(userChoice == "1") {
+            // instantiate human + ai
+            player1 = new Human();
+            computer = new Ai();
+        }
+        else {
+            player1 = new Human();
+            player2 = new Human();
+        }
+    }
+
+    public void configurePlayers() {
+        player1.chooseName();
+        if(player2 != null) {
+            player2.chooseName();
+        }
     }
 
     public void battle() {
-
+        printLine("Battle");
     }
 
     final static void printLine(String text) {
@@ -47,7 +70,7 @@ public class Game {
     }
 
     public void decideWinner() {
-
+        System.out.println("Decide Winner");
     }
 
     public int userChosenRoundNumber() {
