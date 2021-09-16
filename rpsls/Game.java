@@ -1,7 +1,10 @@
 package rpsls;
 
+import java.util.Scanner;
+
 public class Game {
     static int numberOfWinsToGameOver;
+    Scanner gameInput;
 
     public void runGame() {
 
@@ -14,6 +17,8 @@ public class Game {
         // computer.chooseGesture();
 
         openingStatement();
+        numberOfRounds();
+        System.out.println(Game.numberOfWinsToGameOver);
 
     }
 
@@ -46,8 +51,9 @@ public class Game {
     }
 
     public int userChosenRoundNumber() {
-        printLine("Choose a number and you'll play a best of that number");
-        String rounds = Human.userInput.nextLine();
+        gameInput = new Scanner(System.in);
+        printLine("\nChoose a number and you'll play a best of that number");
+        String rounds = gameInput.nextLine();
         return Integer.parseInt(rounds);
     }
 
@@ -58,7 +64,7 @@ public class Game {
             Game.numberOfWinsToGameOver = winningNumber;
         }
         else if(num % 2 == 1) {
-            int winningNumber = (int)Math.ceil(num / 2);
+            int winningNumber = ((num + 1) / 2);
             Game.numberOfWinsToGameOver = winningNumber;
         }
     }
