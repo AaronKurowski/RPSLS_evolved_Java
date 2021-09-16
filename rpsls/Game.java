@@ -11,7 +11,7 @@ public class Game {
 
     public Game() {
         chooseContestants();
-        configurePlayers();
+        // configurePlayers();
     }
 
     public void runGame() {
@@ -26,8 +26,8 @@ public class Game {
         gameInput = new Scanner(System.in);
         printLine("\nType 1 to play against a computer ai");
         printLine("Type 2 to play against another human");
-        String userChoice = gameInput.nextLine();
-        if(userChoice == "1") {
+        String userChoice = gameInput.next();
+        if(userChoice.equals("1")) {
             // instantiate human + ai
             player1 = new Human();
             computer = new Ai();
@@ -35,13 +35,6 @@ public class Game {
         else {
             player1 = new Human();
             player2 = new Human();
-        }
-    }
-
-    public void configurePlayers() {
-        player1.chooseName();
-        if(player2 != null) {
-            player2.chooseName();
         }
     }
 
