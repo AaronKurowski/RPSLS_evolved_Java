@@ -18,8 +18,14 @@ public class Game {
         openingStatement();
         numberOfRounds();
         System.out.println("Round best of: " + Game.numberOfWinsToGameOver);
-
         battle();
+        // if(computer == null){
+        //     humanBattle(player1, player2);
+        // }
+        // else {
+        //     aiBattle(player1, computer);
+        // }
+
     }
 
     public void chooseContestants() {
@@ -38,8 +44,24 @@ public class Game {
         }
     }
 
+    public void aiBattle() {
+
+    }
+
     public void battle() {
         printLine("Battle");
+        if(player2 == null) {
+            while(player1.winCount < numberOfWinsToGameOver && computer.winCount < numberOfWinsToGameOver) {
+                printLine("This is player 1 and ai battling");
+                break;
+            }
+        }
+        else {
+            while(player1.winCount < numberOfWinsToGameOver && player2.winCount < numberOfWinsToGameOver) {
+                printLine("This is 2 humans battling");
+                break;
+            }
+        }
     }
 
     final static void printLine(String text) {
