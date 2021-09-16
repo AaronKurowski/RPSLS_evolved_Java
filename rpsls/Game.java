@@ -8,24 +8,21 @@ public class Game {
     Human player1;
     Human player2;
     Ai computer;
+    Gesture gesture;
 
     public Game() {
-        chooseContestants();
-        // configurePlayers();
+        // chooseContestants();
+        gesture = new Gesture();
     }
 
     public void runGame() {
-        openingStatement();
-        numberOfRounds();
-        System.out.println("Round best of: " + Game.numberOfWinsToGameOver);
-        battle();
-        // if(computer == null){
-        //     humanBattle(player1, player2);
-        // }
-        // else {
-        //     aiBattle(player1, computer);
-        // }
+       gesture.printWinConditions();
+       gesture.defineWinnerForComputerOpponent(player1, computer);
 
+        // openingStatement();
+        // numberOfRounds();
+        // System.out.println("Round best of: " + Game.numberOfWinsToGameOver);
+        // battle();
     }
 
     public void chooseContestants() {
@@ -34,7 +31,6 @@ public class Game {
         printLine("Type 2 to play against another human");
         String userChoice = gameInput.next();
         if(userChoice.equals("1")) {
-            // instantiate human + ai
             player1 = new Human();
             computer = new Ai();
         }
@@ -42,10 +38,6 @@ public class Game {
             player1 = new Human();
             player2 = new Human();
         }
-    }
-
-    public void aiBattle() {
-
     }
 
     public void battle() {
